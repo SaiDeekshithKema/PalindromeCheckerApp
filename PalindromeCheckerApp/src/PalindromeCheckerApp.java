@@ -4,17 +4,15 @@ public class PalindromeCheckerApp {
         Scanner sc=new Scanner(System.in);
         System.out.println("Enter a word : ");
         String wrd=sc.nextLine(),temp = "";
-        Stack<Character> stack=new Stack<>();
-        Queue<Character> queue=new LinkedList<>();
+        Deque<Character> deque=new ArrayDeque<>();
         for(char c:wrd.toCharArray())
         {
-            stack.push(c);
-            queue.add(c);
+            deque.addLast(c);
         }
         boolean isPalindrome =true;
-        while(!queue.isEmpty())
+        while(deque.size()>1)
         {
-            if(queue.remove()!=stack.pop()) {
+            if(deque.removeLast()!=deque.removeFirst()) {
                 isPalindrome = false;
                 System.out.println("Not Palindrome");
                 System.exit(0);
