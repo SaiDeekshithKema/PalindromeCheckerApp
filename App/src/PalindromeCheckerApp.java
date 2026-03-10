@@ -2,7 +2,6 @@ import java.util.*;
 
 public class PalindromeCheckerApp {
 
-    // Recursive method
     private static boolean check(String s, int start, int end) {
         if (start < end) {
             if (s.charAt(start) != s.charAt(end))
@@ -10,9 +9,8 @@ public class PalindromeCheckerApp {
             else
                 return check(s, start + 1, end - 1);
         }
-        else {
+        else
             return true;
-        }
     }
 
     public static void main(String[] args) {
@@ -21,35 +19,21 @@ public class PalindromeCheckerApp {
         System.out.println("Enter a word : ");
 
         String wrd = sc.nextLine();
+        String normalized = wrd.replaceAll(" ", "").toLowerCase();
 
-        // LinkedList method
-        LinkedList<Character> list = new LinkedList<>();
+        boolean isPalindrome = check(normalized, 0, normalized.length() - 1);
 
-        for (char c : wrd.toCharArray()) {
-            list.add(c);
-        }
-
-        boolean isPalindrome = true;
-
-        while (list.size() > 1) {
-            if (list.removeFirst() != list.removeLast()) {
+        for (int i = 0; i < normalized.length(); i++) {
+            if (normalized.charAt(i) != normalized.charAt(normalized.length() - 1 - i)) {
                 isPalindrome = false;
                 break;
             }
         }
 
         if (isPalindrome)
-            System.out.println("LinkedList Method: Word is Palindrome");
+            System.out.println("word is Palindrome");
         else
-            System.out.println("LinkedList Method: Word is not Palindrome");
-
-        // Recursive method
-        boolean recursiveResult = check(wrd, 0, wrd.length() - 1);
-
-        if (recursiveResult)
-            System.out.println("Recursive Method: Word is Palindrome");
-        else
-            System.out.println("Recursive Method: Word is not Palindrome");
+            System.out.println("word is not Palindrome");
 
         sc.close();
     }
